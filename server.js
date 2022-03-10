@@ -19,6 +19,17 @@ const friends = [
   },
 ];
 
+// middleware
+app.use((req, res, next) => {
+  const start = Date.now();
+  console.log(`${req.method} ${req.url}`);
+  next(); // must always include the next funtion
+
+  // actions on response go here
+  const delta = Date.now() - start;
+  console.log(`${req.method} ${req.url} ${delta}ms`);
+});
+
 app.get('/', (req, res) => {
   res.send('Express installed');
 });
